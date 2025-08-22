@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In - Waste to Fertilizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function handleSignIn(event) {
+      event.preventDefault();
+      const email = event.target.email.value.trim();
+      const password = event.target.password.value;
+
+      if (!email || !password) {
+        alert("❌ Please enter both email and password.");
+        return;
+      }
+
+      localStorage.setItem("userEmail", email);
+      alert("✅ Signed in successfully!");
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>🌿 Waste to Fertilizer</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop/catalog.html">Shop</a></li>
+        <li><a href="contributors/form.html">Sell Waste</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Sign In</h2>
+    <p>Welcome back! Log in to continue your eco journey 🌱</p>
+    <form onsubmit="handleSignIn(event)">
+      <label>Email:
+        <input type="email" name="email" required />
+      </label>
+      <label>Password:
+        <input type="password" name="password" required />
+      </label>
+      <button type="submit">Sign In</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Waste to Fertilizer | Greener together 🌿</p>
+  </footer>
+</body>
+</html>

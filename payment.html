@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Payment</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.onload = function () {
+      const order = JSON.parse(localStorage.getItem("fertilizerOrder"));
+      if (order) {
+        document.getElementById("qty").textContent = order.qty;
+        document.getElementById("price").textContent = "₹" + order.price;
+      }
+    }
+
+    function confirmPayment() {
+      const cardName = document.getElementById("cardName").value.trim();
+      const paymentType = document.getElementById("paymentType").value;
+
+      if (!cardName || !paymentType) {
+        alert("❌ Please provide payment details.");
+        return;
+      }
+
+      alert("✅ Payment confirmed! Thank you for your purchase 🌿");
+      localStorage.removeItem("fertilizerOrder");
+      window.location.href = "thankyou.html";
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <h1>🌿 Waste to Fertilizer</h1>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../contributors/form.html">Sell Waste</a></li>
+        <li><a href="catalog.html">Buy Fertilizer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Confirm Your Fertilizer Purchase</h2>
+    <p>Complete your payment below 🌾</p>
+  </section>
+
+  <!-- Payment Form -->
+  <form onsubmit="confirmPayment(); return false;">
+    <label>Quantity: <span id="qty"></span></label>
+    <label>Total Price: <span id="price"></span></label>
+
+    <label>Cardholder Name:
+      <input type="text" id="cardName" required>
+    </label>
+
+    <label>Payment Method:
+      <select id="paymentType" required>
+        <option value="">-- Select Method --</option>
+        <option value="UPI">UPI</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Wallet">Digital Wallet</option>
+      </select>
+    </label>
+
+    <button type="submit">Pay Now</button>
+  </form>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Waste to Fertilizer | Thanks for shopping sustainably 🌍</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy Organic Fertilizer</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const qtySelector = document.getElementById("qty");
+      const priceOutput = document.getElementById("price");
+      const prices = {
+        "1": 50,
+        "5": 220,
+        "10": 400
+      };
+
+      qtySelector.addEventListener("change", () => {
+        const selectedQty = qtySelector.value;
+        priceOutput.textContent = "₹" + (prices[selectedQty] || 0);
+      });
+
+      document.getElementById("fertilizerForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const qty = qtySelector.value;
+        const price = prices[qty];
+        localStorage.setItem("fertilizerOrder", JSON.stringify({ qty, price }));
+        window.location.href = "payment.html";
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <h1>🌿 Waste to Fertilizer</h1>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../contributors/form.html">Sell Waste</a></li>
+        <li><a href="catalog.html">Buy Fertilizer</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Buy Organic Fertilizer</h2>
+    <p>Choose compost-based nutrients for a greener, healthier garden 🌱</p>
+  </section>
+
+  <!-- Product Card -->
+  <div class="catalog">
+    <div class="card">
+      <img src="../ferti.png" alt="Eco Compost">
+      <h3>Eco Compost</h3>
+      <p>Nutrient-rich blend from recycled organic waste—perfect for veggies, herbs & flowers.</p>
+
+      <form id="fertilizerForm">
+        <label for="qty">Quantity:
+          <select id="qty" name="quantity">
+            <option value="1">1 kg</option>
+            <option value="5">5 kg</option>
+            <option value="10">10 kg</option>
+          </select>
+        </label>
+        <p><strong>Price:</strong> <span id="price">₹50</span></p>
+        <button type="submit" class="btn">Confirm Purchase</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Waste to Fertilizer | Greener gardens, cleaner planet 🌿</p>
+  </footer>
+
+</body>
+</html>
